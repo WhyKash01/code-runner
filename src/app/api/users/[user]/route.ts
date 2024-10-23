@@ -18,9 +18,16 @@ export async function POST(req: NextRequest){
             email: body.email
         }
     })
+    const Rooms = await prisma.room.findMany(
+      {
+          where:{
+            ownerId: User?.id
+          }
+      })
     return NextResponse.json({
         data:{
-          User
+          User,
+          Rooms
         }
       });
 }

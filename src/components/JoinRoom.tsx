@@ -5,6 +5,7 @@ import {
   AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
+  AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
@@ -42,11 +43,16 @@ export default function AlertDialogDemo() {
         <Button className="bg-cyan-800 text-white hover:bg-cyan-700 text-lg font-normal">
           Create Room
         </Button>
+        
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Enter Room Name</AlertDialogTitle>
+          <AlertDialogTitle className="text-2xl">Enter Room Name</AlertDialogTitle>
+          <AlertDialogDescription>
+          <div className="my-2 text-zinc-300">Enter the name of the room for collaboration or group discussions.</div>
+          </AlertDialogDescription>
           <Input
+            className="mt-5"
             type="text"
             onChange={(e) => {
               setRoom(e.target.value);

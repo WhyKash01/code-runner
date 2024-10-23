@@ -30,7 +30,7 @@ model Room {
   id           Int            @id @default(autoincrement())
   name         String
   ownerId      Int
-  owner        User           @relation("RoomOwner", fields: [ownerId], references: [id])
+  owner        User?           @relation("RoomOwner", fields: [ownerId], references: [id])
   users        User[]         @relation("RoomUsers")
   codeSnippets CodeSnippet[]
   createdAt    DateTime       @default(now())
