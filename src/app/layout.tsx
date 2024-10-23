@@ -2,6 +2,7 @@
 import { ThemeProvider } from "@/components/theme-provider"
 import "./globals.css";
 import {RecoilRoot} from 'recoil';
+import { Providers } from "./Providers";
 import { SocketComponent } from "@/components/SocketComponent";
 export default function RootLayout({
   children,
@@ -18,7 +19,9 @@ export default function RootLayout({
           >
           <SocketComponent>
           <RecoilRoot>
+            <Providers>
             {children}
+            </Providers>
             </RecoilRoot>
           </SocketComponent>
           </ThemeProvider></body>
