@@ -38,7 +38,7 @@ const LanguageSelector = () => {
     <div>
       <DropdownMenu>
         <DropdownMenuTrigger>
-          <div className="text-white capitalize bg-sky-700 hover:bg-sky-600 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-lg px-8 py-2 text-center ">{Language}</div>
+          <div className="text-white capitalize bg-sky-700 hover:bg-sky-600 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full px-6 py-1 text-center h-8 ">{Language}</div>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuLabel>Select Language</DropdownMenuLabel>

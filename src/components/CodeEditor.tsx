@@ -63,6 +63,7 @@ const CollaborativeEditor = () => {
       {/* Code editor */}
       {isConnected && (
         <Editor
+          
           theme="vs-dark"
           height="80vh"
           language={Language}

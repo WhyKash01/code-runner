@@ -62,7 +62,7 @@ const Output = () => {
   };
   return (
     <div>
-      <Button onClick={submitHandler} className="  bg-white text-black hover:bg-zinc-200 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-lg px-8 py-2 text-center mb-5">
+      <Button onClick={submitHandler} className="h-8 text-black capitalize bg-white hover:bg-sky-200 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full px-6 py-1 text-center mb-5">
         Run Code
       </Button>
       <div className={`bg-[#1E1E1E] p-5 h-[80vh] w-[46vw] ${colour} rounded-md`}>
