@@ -20,7 +20,12 @@ const textSize = atom({
   key: "textSize",
   default: 3,
 });
+const Loading = atom({
+  key: "Loading",
+  default: true,
+});
 export {
+  Loading,
   room,
   codeValue,
   language,

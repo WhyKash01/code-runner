@@ -13,7 +13,7 @@ export default function Home() {
   const router = useRouter();
   const session = useSession();
   return (
-    <div className="bg-cyan-900 z-50 flex shadow-lg justify-between px-5 py-3 border-b border-cyan-600">
+    <div className="bg-zinc-950 z-50 flex shadow-lg justify-between px-5 py-3 border-b border-cyan-600">
       <div className="flex gap-10">
         <div className="flex gap-2 text-white items-center">
           <Image className="w-8 h-8" src={logo} alt=""></Image>
@@ -42,7 +42,7 @@ export default function Home() {
                 onClick={() => {
                   signIn();
                 }}
-                className="h-9 bg-black hidden sm:block hover:bg-zinc-900 text-white"
+                className="h-9 bg-zinc-200 hidden sm:block hover:bg-white text-black"
               >
                 Login
               </Button>

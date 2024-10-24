@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSocket } from "./SocketComponent";
 import dynamic from "next/dynamic";
 import { useRecoilState } from "recoil";
-import { codeValue, language, room } from "@/Store/atom";
+import { codeValue, language, Loading, room } from "@/Store/atom";
 import { useSearchParams } from "next/navigation";
 
 // Dynamically import Monaco Editor (client-side only)
@@ -13,8 +13,8 @@ const CollaborativeEditor = () => {
   const [Language, setLanguage] = useRecoilState(language);
   const [Room, setRoom] = useRecoilState<string>(room);
   const [code, setCode] = useRecoilState(codeValue);
-  const [loading, setLoading] = useState(true);
-  const searchParams:any = useSearchParams();
+  const [loading, setLoading] = useRecoilState(Loading);
+  const searchParams: any = useSearchParams();
   useEffect(() => {
     const roomName = searchParams.get("name"); // Get the 'name' query parameter
     if (roomName) {
@@ -26,21 +26,14 @@ const CollaborativeEditor = () => {
     setLoading(false); // Stop loading
   }, [searchParams, setRoom]);
 
-  const handleJoinRoom = () => {
-    if (Room) {
-      console.log("Joining room:", Room);
-      socket.emit("join-room", Room);
-    } else {
-      console.error("Room is undefined or empty");
-    }
-  };
-
   const handleCodeChange = (newCode: string | undefined) => {
+    
+    console.log(JSON.stringify({code}));
     if (newCode !== undefined) {
       setCode(newCode);
       if (Room) {
         console.log("Emitting updated code to room:", Room);
-        socket.emit("update-code", { code: newCode, room:Room });
+        socket.emit("update-code", { code: newCode, room: Room });
       } else {
         console.warn("Room is not defined; cannot emit updated code.");
       }
@@ -63,10 +56,8 @@ const CollaborativeEditor = () => {
   }, [socket, isConnected]);
 
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div className=" rounded-md overflow-hidden flex flex-col items-center gap-4">
       
-
-      <div>{loading ? "Loading..." : `Current Room: ${Room}`}</div>
 
       {/* Code editor */}
       {isConnected && (

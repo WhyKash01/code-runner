@@ -29,7 +29,10 @@ export default function AlertDialogDemo() {
         setRoom(Room)
         console.log("Joining room:", Room); // Debug room value before emitting
         socket.emit("join-room", Room);
-        router.push(`/code/Rooms?name=${Room}`);
+        socket.on('room-joined', async () => {
+          console.log("Joined room successfully");
+          await router.push(`/code/Rooms?name=${Room}`);
+        });
       // Navigate to the "code" page after joining the room
       //router.push(`/code`);  // No need for isClient check, router is available
     } else {
@@ -40,7 +43,7 @@ export default function AlertDialogDemo() {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button className="bg-cyan-800 text-white hover:bg-cyan-700 text-lg font-normal">
+        <Button className="text-white bg-zinc-950 hover:bg-zinc-800 focus:outline-none focus:ring-4 focus:ring-sky-200 font-medium rounded-full text-lg px-10 py-6 text-center me-2 mb-2">
           Create Room
         </Button>
         

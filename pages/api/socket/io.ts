@@ -18,24 +18,25 @@ const ioHandler = (req: NextApiRequest, res: NextApiResponseServerIo) => {
     io.on("connection", (socket) => {
       console.log("User connected:", socket.id);
 
-      socket.on("event:message", ({message,room}) => {
+      socket.on("event:message", ({ message, room }) => {
         console.log("Received chat message:", message);
         socket.to(room).emit("event:message", message);
       });
-      socket.on('join-room', (room) => {
+      socket.on("join-room", (room) => {
         console.log(`${socket.id} joined room: ${room}`);
-        socket.join(room); // Join the room
-      });
-    
-      // Handle code updates in a room
-      socket.on('update-code', ({ code, room }) => {
-        console.log(`Code update in room ${room}:`, code);
-    
-        // Broadcast the updated code to other users in the same room
-        socket.to(room).emit('code-updated', code);
+        socket.join(room);
+        socket.emit("room-joined"); // Join the room
       });
 
-      socket.on("disconnect", () => {
+      // Handle code updates in a room
+      socket.on("update-code", ({ code, room }) => {
+        console.log(`Code update in room ${room}:`, code);
+
+        // Broadcast the updated code to other users in the same room
+        socket.to(room).emit("code-updated", code);
+      });
+
+      socket.on("disconnect", () => { 
         console.log("User disconnected:", socket.id);
       });
     });

@@ -5,11 +5,13 @@ const prisma = new PrismaClient();
 export async function POST(req: NextRequest) {
   const body = await req.json();
 
-  if (!body.authenticate) {
+  // Explicitly check for the boolean `true`
+  if (!body.authenticate || body.authenticate === "false") {
     return NextResponse.json({
       message: "User not logged in",
     });
   }
+
   const user = await prisma.user.findUnique({
     where: { email: body.email },
   });
@@ -19,6 +21,7 @@ export async function POST(req: NextRequest) {
       message: "User not found",
     });
   }
+
   const existingRooms = await prisma.room.findMany({
     where: { name: body.name },
   });
