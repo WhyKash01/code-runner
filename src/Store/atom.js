@@ -22,7 +22,7 @@ const textSize = atom({
 });
 const Loading = atom({
   key: "Loading",
-  default: true,
+  default: false,
 });
 export {
   Loading,

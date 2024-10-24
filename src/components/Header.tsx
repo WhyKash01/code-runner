@@ -9,10 +9,15 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useRouter } from "next/navigation";
+import { Loading } from "@/Store/atom";
+import { useRecoilState } from "recoil";
+import Loader from "./Loader";
 export default function Home() {
+  const [loading, setLoading] = useRecoilState(Loading);
   const router = useRouter();
   const session = useSession();
   return (
+    <div>
     <div className="bg-zinc-950 z-50 flex shadow-lg justify-between px-5 py-3 border-b border-cyan-600">
       <div className="flex gap-10">
         <div className="flex gap-2 text-white items-center">
@@ -70,6 +75,9 @@ export default function Home() {
         ) : null}
         <Toggle></Toggle>
       </div>
+      </div>
+      
     </div>
+
   );
 }

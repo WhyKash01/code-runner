@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { useRecoilState } from "recoil";
 import { codeValue, language, Loading, room } from "@/Store/atom";
 import { useSearchParams } from "next/navigation";
+import Loader from "./Loader";
 
 // Dynamically import Monaco Editor (client-side only)
 const Editor = dynamic(() => import("@monaco-editor/react"), { ssr: false });
@@ -54,7 +55,7 @@ const CollaborativeEditor = () => {
       };
     }
   }, [socket, isConnected]);
-
+  
   return (
     <div className=" rounded-md overflow-hidden flex flex-col items-center gap-4">
       
