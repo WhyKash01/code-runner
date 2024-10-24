@@ -10,7 +10,7 @@ const room = atom({
 })
 const codeValue= atom({
   key: "codeval",
-  default:""
+  default:`function greet(name) {\n\tconsole.log("Hello, " + name + "!");\n}\n\ngreet("Alex");\n`
 })
 const textLineNumber = atom({
   key: "textLineNumber",

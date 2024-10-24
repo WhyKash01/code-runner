@@ -64,7 +64,7 @@ const CollaborativeEditor = () => {
       {isConnected && (
         <Editor
           theme="vs-dark"
-          height="75vh"
+          height="80vh"
           language={Language}
           value={code}
           onChange={(newValue) => handleCodeChange(newValue ?? "")}

@@ -11,20 +11,33 @@ export const CODE_VERSION: any = {
 };
 const Output = () => {
   const [code, setCode] = useRecoilState(codeValue);
+  const [Default, setDefault]=useState(true)
   const [Language, setLanguage] = useRecoilState(language);
   const [version, setVersion] = useState("");
-  const [ResponseData, setResponseData] = useState<any>("");
+  const [ResponseData, setResponseData] = useState<any>(`Click "Run Code" to see the output here`);
   const [loading, setLoading] = useRecoilState(Loading);
   const [err, setErr]= useState(false);
   useEffect(() => {
+    setDefault(true)
+    setResponseData(`Click "Run Code" to see the output here`)
     let selectedVersion = CODE_VERSION[Language];
     setVersion(selectedVersion);
   }, [Language]);
-
+  let colour;
+  if(err){
+    colour="text-red-600";
+  }
+  else if(Default){
+    colour="text-zinc-500";
+  }
+  else{
+    colour="text-zinc-200";
+  }
   const submitHandler = async (e: any) => {
     e.preventDefault();
     console.log(JSON.stringify(code))
     try {
+      setDefault(false)
       setLoading(true);
       const response:any = await axios.post("https://emkc.org/api/v2/piston/execute", {
         language: Language,
@@ -49,10 +62,17 @@ const Output = () => {
   };
   return (
     <div>
-      <Button onClick={submitHandler} className=" mb-5">
+      <Button onClick={submitHandler} className="  bg-white text-black hover:bg-zinc-200 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-lg px-8 py-2 text-center mb-5">
         Run Code
       </Button>
-      <div className={`bg-[#1E1E1E] p-5 h-[75vh] w-[46vw] ${err? "text-red-600": "text-zinc-200"} rounded-md`}>{ResponseData}</div>
+      <div className={`bg-[#1E1E1E] p-5 h-[80vh] w-[46vw] ${colour} rounded-md`}>
+        <div className="mb-2 text-xl font-bold text-zinc-500 capitalize">
+        {Language+" "+version}
+        </div>
+        <div>
+        {ResponseData}
+        </div>
+        </div>
     </div>
   );
 };

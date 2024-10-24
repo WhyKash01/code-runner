@@ -18,7 +18,7 @@ export default function Home() {
   const session = useSession();
   return (
     <div>
-    <div className="bg-zinc-950 z-50 flex shadow-lg justify-between px-5 py-3 border-b border-cyan-600">
+    <div className="bg-zinc-950 z-50 flex shadow-lg justify-between h-[8vh] px-5 py-3 border-b border-cyan-600">
       <div className="flex gap-10">
         <div className="flex gap-2 text-white items-center">
           <Image className="w-8 h-8" src={logo} alt=""></Image>
