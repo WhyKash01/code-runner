@@ -29,11 +29,11 @@ const LanguageSelector = () => {
       if (Room) {
         console.log("Emitting updated code to room:", Room);
         socket.emit("update-code", { code: newCode, room:Room });
-      } else {
+      } else { 
         console.warn("Room is not defined; cannot emit updated code.");
       }
     }
-  };
+  }; 
   return (
     <div>
       <DropdownMenu>
